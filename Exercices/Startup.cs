@@ -51,7 +51,9 @@ namespace exercices
                };
            });
             services.AddControllers();
-            services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<Context>();
+            services.AddIdentity<IdentityUser, IdentityRole>()
+                .AddEntityFrameworkStores<Context>()
+                .AddDefaultTokenProviders();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

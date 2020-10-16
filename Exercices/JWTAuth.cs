@@ -14,16 +14,20 @@ namespace exercices
 {
     public class JWTAuth : IAuth
     {
-        public JWTAuth(IConfiguration configuration)
+        public JWTAuth(IConfiguration configuration, Context context)
         {
             Configuration = configuration;
+            Context = context;
         }
 
         public IConfiguration Configuration { get; }
+        public Context Context { get; }
 
         public string Auth(IdentityUser user)
         {
-            if(string.IsNullOrEmpty(user.Email))
+            if (string.IsNullOrEmpty(user.UserName) || 
+                !Context.Users.Any(u =>u.UserName == user.UserName) ||
+                Context.Users.First(u => u.UserName == user.UserName).PasswordHash != user.PasswordHash)
             {
                 return null;
             }
@@ -35,7 +39,7 @@ namespace exercices
                 {
                     Subject = new ClaimsIdentity(new Claim[]
                     {
-                        new Claim(ClaimTypes.Name, user.Email)
+                        new Claim(ClaimTypes.Name, user.UserName)
                     }),
                     Expires = DateTime.Now.AddDays(1),
                     SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(Encoding.ASCII.GetBytes(key)), SecurityAlgorithms.HmacSha256Signature)

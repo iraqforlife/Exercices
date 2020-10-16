@@ -28,7 +28,7 @@ namespace exercices
         {
             services.AddDbContext<Context>(options => options.UseMySql(Configuration["connection"]));
             services.AddControllersWithViews();
-            services.AddSingleton<IAuth>(new JWTAuth(Configuration));
+            services.AddScoped<IAuth, JWTAuth>();
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {

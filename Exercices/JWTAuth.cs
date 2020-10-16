@@ -6,7 +6,6 @@ using System.IdentityModel.Tokens.Jwt;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System.Security.Claims;
-using System.Security.Cryptography.Xml;
 using System.Text;
 using Microsoft.AspNetCore.Identity;
 
@@ -14,10 +13,9 @@ namespace exercices
 {
     public class JWTAuth : IAuth
     {
-        public JWTAuth(IConfiguration configuration, Context context)
+        public JWTAuth(IConfiguration configuration)
         {
             Configuration = configuration;
-            Context = context;
         }
 
         public IConfiguration Configuration { get; }
@@ -25,14 +23,6 @@ namespace exercices
 
         public string Auth(IdentityUser user)
         {
-            if (string.IsNullOrEmpty(user.UserName) || 
-                !Context.Users.Any(u =>u.UserName == user.UserName) ||
-                Context.Users.First(u => u.UserName == user.UserName).PasswordHash != user.PasswordHash)
-            {
-                return null;
-            }
-            else
-            {
                 var tokenHandler = new JwtSecurityTokenHandler();
                 var key = Configuration["jwtKey"];
                 var tokenDesc = new SecurityTokenDescriptor
@@ -49,4 +39,3 @@ namespace exercices
             }
         }
     }
-}

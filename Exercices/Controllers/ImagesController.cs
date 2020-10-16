@@ -53,8 +53,10 @@ namespace exercices.Controllers
 
             if (dbImage == null)
                 throw new System.Exception("image not found");
+            //update
             dbImage.Title = image.Title;
             dbImage.Description = image.Description;
+            // save
             Context.Images.Attach(dbImage);
             Context.Entry(dbImage).State = EntityState.Modified;
             await Context.SaveChangesAsync();

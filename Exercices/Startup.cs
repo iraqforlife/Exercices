@@ -28,7 +28,7 @@ namespace exercices
         {
             services.AddDbContext<Context>(options => options.UseMySql(Configuration["connection"]));
             services.AddControllersWithViews();
-            services.AddScoped<IAuth, JWTAuth>();
+            services.AddSingleton<IAuth, JWTAuth>();
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
@@ -52,8 +52,7 @@ namespace exercices
            });
             services.AddControllers();
             services.AddIdentity<IdentityUser, IdentityRole>()
-                .AddEntityFrameworkStores<Context>()
-                .AddDefaultTokenProviders();
+                .AddEntityFrameworkStores<Context>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -11,6 +13,13 @@ namespace exercices.Controllers
     [Authorize]
     public class ValuesController : ControllerBase
     {
+        public Context Context { get; }
+
+        public ValuesController(Context context)
+        {
+            Context = context;
+        }
+
         // GET: api/<ValuesController>
         [HttpGet]
         public IEnumerable<string> Get()
@@ -23,7 +32,7 @@ namespace exercices.Controllers
         [AllowAnonymous]
         public string Get(int id)
         {
-            return "value";
+            return JsonConvert.SerializeObject(Context.Images.ToList().First());
         }
 
         // POST api/<ValuesController>

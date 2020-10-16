@@ -8,6 +8,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Security.Claims;
 using System.Security.Cryptography.Xml;
 using System.Text;
+using Microsoft.AspNetCore.Identity;
 
 namespace exercices
 {
@@ -20,9 +21,9 @@ namespace exercices
 
         public IConfiguration Configuration { get; }
 
-        public string Auth(User user)
+        public string Auth(IdentityUser user)
         {
-            if(string.IsNullOrEmpty(user.Username))
+            if(string.IsNullOrEmpty(user.Email))
             {
                 return null;
             }
@@ -34,7 +35,7 @@ namespace exercices
                 {
                     Subject = new ClaimsIdentity(new Claim[]
                     {
-                        new Claim(ClaimTypes.Name, user.Username)
+                        new Claim(ClaimTypes.Name, user.Email)
                     }),
                     Expires = DateTime.Now.AddDays(1),
                     SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(Encoding.ASCII.GetBytes(key)), SecurityAlgorithms.HmacSha256Signature)

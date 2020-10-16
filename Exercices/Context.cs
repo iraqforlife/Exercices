@@ -1,11 +1,13 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Exercices.Model;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 
 namespace exercices
 {
-    public class Context : DbContext
+    public class Context : IdentityDbContext
     {
         public Context(DbContextOptions<Context> options) : base(options) { }
 
-        public DbSet<User> Users { get; set; }
+        public DbSet<Image> Images { get; set; }
     }
 }

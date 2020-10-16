@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -25,7 +26,7 @@ namespace exercices
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<Context>(options => options.UseMySql(Configuration.GetConnectionString("connection")));
+            services.AddDbContext<Context>(options => options.UseMySql(Configuration["connection"]));
             services.AddControllersWithViews();
             services.AddSingleton<IAuth>(new JWTAuth(Configuration));
             // In production, the React files will be served from this directory
@@ -50,6 +51,7 @@ namespace exercices
                };
            });
             services.AddControllers();
+            services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<Context>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

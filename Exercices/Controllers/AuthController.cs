@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 
 namespace exercices
 {
@@ -14,7 +15,7 @@ namespace exercices
         public IAuth Auth { get; }
 
         [HttpPost("login")]
-        public IActionResult Login([FromBody] User user)
+        public IActionResult Login([FromBody] IdentityUser user)
         {
             var token = Auth.Auth(user);
             if (token is null)

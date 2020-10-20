@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import AddItem from './AddItem'
-import AuthUtils from '../services/authentification';
 
 export class ItemList extends Component {
   static displayName = ItemList.name;
@@ -57,14 +56,8 @@ export class ItemList extends Component {
   }
 
   async populateWeatherData() {
-    //const response = await fetch('weatherforecast');
-    const data = [
-      {
-        id: 1,
-        title: "hi",
-        description: "Fsafsafsafafa"
-      }
-    ]/*await response.json();*/
+    const response = await fetch('/api/images');
+    const data = await response.json();
     this.setState({ items: data, loading: false });
   }
 }

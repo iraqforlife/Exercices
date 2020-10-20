@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Collapse, Container, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink } from 'reactstrap';
 import { Link } from 'react-router-dom';
-import UserStore from '../stores/UserStore';
+import AuthUtils from '../services/authentification';
 
 export class NavMenu extends Component {
   static displayName = NavMenu.name;
@@ -22,8 +22,7 @@ export class NavMenu extends Component {
   }
 
   handleLogout() {
-    console.log("Fafsaa")
-    localStorage.setItem("token", null)
+    localStorage.removeItem("token")
   }
 
   render () {
@@ -44,7 +43,7 @@ export class NavMenu extends Component {
                 <NavItem>
                   <NavLink tag={Link} className="text-dark" to="/fetch-data">Fetch data</NavLink>
                 </NavItem>
-                {localStorage.getItem("token") ? 
+                {AuthUtils.isLoggedIn() ? 
                 <button className="logout-btn" onClick={()=> this.handleLogout()}>Logout</button>
                   :
                   null

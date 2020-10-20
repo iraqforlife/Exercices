@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import UserStore from '../stores/UserStore';
 
 export default class Login extends Component {
 
@@ -34,7 +33,7 @@ export default class Login extends Component {
 				localStorage.setItem('token', token)
 			})
 			.catch(error => {
-				localStorage.setItem('token', null)
+				localStorage.removeItem('token')
 			})
 	}
 

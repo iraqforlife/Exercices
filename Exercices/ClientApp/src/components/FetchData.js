@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import UserStore from '../stores/UserStore';
+import AuthUtils from '../services/authentification';
 
 export class FetchData extends Component {
   static displayName = FetchData.name;
@@ -16,7 +16,7 @@ export class FetchData extends Component {
   static renderItems(items) {
     return (
       <div className="">
-        {localStorage.getItem('token') ? 
+        {AuthUtils.isLoggedIn() ? 
               <table className='table table-striped' aria-labelledby="tabelLabel">
               <thead>
                 <tr>

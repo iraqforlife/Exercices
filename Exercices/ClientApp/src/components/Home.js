@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import UserStore from '../stores/UserStore';
+import AuthUtils from '../services/authentification';
 import Login from "./Login";
 import Register from "./Register";
 
@@ -21,7 +21,7 @@ export class Home extends Component {
   render () {
     return (
       <>
-      {localStorage.getItem("token") ? 
+      {AuthUtils.isLoggedIn() ? 
       <div>
         <h1>Hello, world!</h1>
         <p>Welcome to your new single-page application, built with:</p>

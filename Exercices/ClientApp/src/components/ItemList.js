@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import AuthUtils from '../services/authentification';
 
-export class FetchData extends Component {
-  static displayName = FetchData.name;
+export class ItemList extends Component {
+  static displayName = ItemList.name;
 
   constructor(props) {
     super(props);
@@ -45,7 +45,7 @@ export class FetchData extends Component {
   render() {
     let contents = this.state.loading
       ? <p><em>Loading...</em></p>
-      : FetchData.renderItems(this.state.items);
+      : ItemList.renderItems(this.state.items);
 
     return (
       <div>

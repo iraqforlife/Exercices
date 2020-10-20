@@ -1,11 +1,5 @@
-<<<<<<< HEAD
 import React, { Component } from 'react';
 import AddItem from './AddItem'
-=======
-import React, { Component } from "react";
-import AddItem from "./AddItem";
-import AuthUtils from "../services/authentification";
->>>>>>> fb0e395b9053c4c03c16da2907ce86221251c713
 
 export class ItemList extends Component {
   static displayName = ItemList.name;

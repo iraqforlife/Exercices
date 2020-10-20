@@ -1,5 +1,11 @@
+<<<<<<< HEAD
 import React, { Component } from 'react';
 import AddItem from './AddItem'
+=======
+import React, { Component } from "react";
+import AddItem from "./AddItem";
+import AuthUtils from "../services/authentification";
+>>>>>>> fb0e395b9053c4c03c16da2907ce86221251c713
 
 export class ItemList extends Component {
   static displayName = ItemList.name;
@@ -10,53 +16,61 @@ export class ItemList extends Component {
   }
 
   componentDidMount() {
-    this.populateWeatherData();
+    this.populateImages();
   }
 
   static renderItems(items) {
     return (
       <>
-      <div className="">
-        <table className='table table-striped' aria-labelledby="tabelLabel">
-          <thead>
-            <tr>
-              <th>Titre</th>
-              <th>Images</th>
-              <th>Description</th>
-            </tr>
-          </thead>
-          <tbody>
-            {items.map(item =>
-              <tr key={item.id}>
-                <td>{item.title}</td>
-                <td></td>
-                <td>{item.description}</td>
+        <div className="">
+          <table className="table table-striped" aria-labelledby="tabelLabel">
+            <thead>
+              <tr>
+                <th>Titre</th>
+                <th>Images</th>
+                <th>Description</th>
               </tr>
-            )}
-          </tbody>
-        </table>
-      </div>
-      <AddItem />
+            </thead>
+            <tbody>
+              {items.map(item => (
+                <tr key={item.id}>
+                  <td>{item.title}</td>
+                  <td />
+                  <td>{item.description}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <AddItem />
       </>
     );
   }
 
-
   render() {
-    let contents = this.state.loading
-      ? <p><em>Loading...</em></p>
-      : ItemList.renderItems(this.state.items);
+    let contents = this.state.loading ? (
+      <p>
+        <em>Loading...</em>
+      </p>
+    ) : (
+      ItemList.renderItems(this.state.items)
+    );
 
     return (
       <div>
-        <h1 id="tabelLabel" >Items</h1>
+        <h1 id="tabelLabel">Items</h1>
         {contents}
       </div>
     );
   }
 
+<<<<<<< HEAD
   async populateWeatherData() {
     const response = await fetch('/api/images');
+=======
+  async populateImages() {
+    const response = await fetch("api/images");
+>>>>>>> fb0e395b9053c4c03c16da2907ce86221251c713
     const data = await response.json();
     this.setState({ items: data, loading: false });
   }

@@ -1,5 +1,5 @@
 {
-  "proxy": "https://localhost:5001",
+  "proxy": "http://localhost:5001/",
   "name": "exercices",
   "version": "0.1.0",
   "private": true,
@@ -19,7 +19,9 @@
     "react-scripts": "^3.4.1",
     "reactstrap": "^8.4.1",
     "rimraf": "^2.6.2",
-    "sass": "^1.27.0"
+    "sass": "^1.27.0",
+    "create-react-class": "^15.7.0",
+    "react-images-upload": "1.2.8"
   },
   "devDependencies": {
     "ajv": "^6.9.1",

@@ -44,7 +44,7 @@ export default class Login extends Component {
 					<input type="text" placeholder="Identifiant" name="username" value={this.state.username} onChange={(e) => this.handleChange(e)} />
 					<input type="password" placeholder="Mot de passe" name="password" value={this.state.password} onChange={(e) => this.handleChange(e)} />
 					<input type="password" placeholder="Confirmer mot de passe" name="confPassword" value={this.state.confPassword} onChange={(e) => this.handleChange(e)} />
-					<button className="" onClick={(e) => this.handleLogin(e)}>Register</button>
+					<button className="themed-btn" onClick={(e) => this.handleLogin(e)}>Register</button>
 				</form>
 			</div>
 		);

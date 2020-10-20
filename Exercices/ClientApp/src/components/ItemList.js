@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import AddItem from './AddItem'
 import AuthUtils from '../services/authentification';
 
 export class ItemList extends Component {
@@ -15,29 +16,29 @@ export class ItemList extends Component {
 
   static renderItems(items) {
     return (
+      <>
       <div className="">
-        {AuthUtils.isLoggedIn() ? 
-              <table className='table table-striped' aria-labelledby="tabelLabel">
-              <thead>
-                <tr>
-                  <th>Titre</th>
-                  <th>Images</th>
-                  <th>Description</th>
-                </tr>
-              </thead>
-              <tbody>
-                {items.map(item =>
-                  <tr key={item.id}>
-                    <td>{item.title}</td>
-                    <td>{item.description}</td>
-                  </tr>
-                )}
-              </tbody>
-            </table> 
-            :
-            <p>Connexion est requise pour voir le contenu. S.v.p retourner dans la page</p> 
-        } 
+        <table className='table table-striped' aria-labelledby="tabelLabel">
+          <thead>
+            <tr>
+              <th>Titre</th>
+              <th>Images</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            {items.map(item =>
+              <tr key={item.id}>
+                <td>{item.title}</td>
+                <td></td>
+                <td>{item.description}</td>
+              </tr>
+            )}
+          </tbody>
+        </table>
       </div>
+      <AddItem />
+      </>
     );
   }
 

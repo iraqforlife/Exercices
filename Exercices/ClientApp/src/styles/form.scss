@@ -7,13 +7,14 @@
         input {
             margin: 5px 0px;
         }
-        button {
-            max-width: 100px;
-            border-radius: 3px;
-            outline: none;
-            background-color: #0278ae;
-            border: none;
-            color: #fff;
-        }
     }
+}
+
+.themed-btn {
+    max-width: 100px;
+    border-radius: 3px;
+    outline: none;
+    background-color: #0278ae;
+    border: none;
+    color: #fff;
 }

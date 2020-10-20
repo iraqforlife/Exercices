@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Collapse, Container, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink } from 'reactstrap';
 import { Link } from 'react-router-dom';
-import './NavMenu.css';
+import UserStore from '../stores/UserStore';
 
 export class NavMenu extends Component {
   static displayName = NavMenu.name;
@@ -19,6 +19,11 @@ export class NavMenu extends Component {
     this.setState({
       collapsed: !this.state.collapsed
     });
+  }
+
+  handleLogout() {
+    console.log("Fafsaa")
+    localStorage.setItem("token", null)
   }
 
   render () {
@@ -39,7 +44,12 @@ export class NavMenu extends Component {
                 <NavItem>
                   <NavLink tag={Link} className="text-dark" to="/fetch-data">Fetch data</NavLink>
                 </NavItem>
-              </ul>
+                {localStorage.getItem("token") ? 
+                <button className="logout-btn" onClick={()=> this.handleLogout()}>Logout</button>
+                  :
+                  null
+                }
+                </ul>
             </Collapse>
           </Container>
         </Navbar>

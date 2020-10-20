@@ -19,7 +19,8 @@
     "react-scripts": "^3.4.1",
     "reactstrap": "^8.4.1",
     "rimraf": "^2.6.2",
-    "sass": "^1.27.0"
+    "sass": "^1.27.0",
+    "create-react-class": "^15.7.0"
   },
   "devDependencies": {
     "ajv": "^6.9.1",

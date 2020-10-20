@@ -35,8 +35,7 @@ export default class AddItem extends Component {
 		});
 	}
 
-	addItem(event) {
-		console.log()
+	addItem() {
 		axios.post('/api/images', {
 			Title: this.state.title,
 			Description: this.state.description

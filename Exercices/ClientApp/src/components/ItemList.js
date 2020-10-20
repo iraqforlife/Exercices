@@ -11,7 +11,7 @@ export class ItemList extends Component {
   }
 
   componentDidMount() {
-    this.populateWeatherData();
+    this.populateImages();
   }
 
   static renderItems(items) {
@@ -59,7 +59,7 @@ export class ItemList extends Component {
     );
   }
 
-  async populateWeatherData() {
+  async populateImages() {
     const response = await fetch("api/images");
     this.setState({ items: response, loading: false });
   }

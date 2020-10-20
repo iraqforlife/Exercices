@@ -61,6 +61,7 @@ export class ItemList extends Component {
 
   async populateImages() {
     const response = await fetch("api/images");
-    this.setState({ items: response, loading: false });
+    const data = await response.json();
+    this.setState({ items: data, loading: false });
   }
 }

@@ -66,14 +66,14 @@ namespace exercices.Controllers
             image.Path = fileName + "[" + DateTime.Now.Ticks + "]" + extention;
             string path = Path.Combine(root + "/Image", fileName);
             */
-            if (image.File.Length > 0)
-            {
-                using (var stream = new MemoryStream())
-                {
-                    await image.File.CopyToAsync(stream);
-                    image.ImageBytes = stream.ToArray();
-                }
-            }
+            // if (image.File.Length > 0)
+            // {
+            //     using (var stream = new MemoryStream())
+            //     {
+            //         await image.File.CopyToAsync(stream);
+            //         image.ImageBytes = stream.ToArray();
+            //     }
+            // }
 
             Context.Add(image);
             await Context.SaveChangesAsync();

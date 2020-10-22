@@ -58,13 +58,8 @@ export class ItemList extends Component {
     );
   }
 
-<<<<<<< HEAD
-  async populateWeatherData() {
-    const response = await fetch('/api/images');
-=======
   async populateImages() {
     const response = await fetch("api/images");
->>>>>>> fb0e395b9053c4c03c16da2907ce86221251c713
     const data = await response.json();
     this.setState({ items: data, loading: false });
   }

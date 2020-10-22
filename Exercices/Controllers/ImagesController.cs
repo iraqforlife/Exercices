@@ -57,7 +57,7 @@ namespace exercices.Controllers
         }
         // POST api/images
         [HttpPost]
-        public async Task Post([FromBody] Image image)
+        public async Task Post([FromForm] Image image)
         {
             /*
             string root = WebHostEnvironment.WebRootPath;
@@ -75,8 +75,8 @@ namespace exercices.Controllers
                 }
             }
 
-            //Context.Add(image);
-            //await Context.SaveChangesAsync();
+            Context.Add(image);
+            await Context.SaveChangesAsync();
         }
 
         // PUT api/images/5

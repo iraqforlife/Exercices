@@ -38,19 +38,14 @@ export default class AddItem extends Component {
 
   addItem() {
     const data = new FormData();
-    data.append("title", this.state.title);
-    data.append("description", this.state.description);
+    data.append("Title", this.state.title);
+    data.append("Description", this.state.description);
     data.append("file", this.state.file);
     axios
-      .post("/api/images", {
-        Title: this.state.title,
-        Description: this.state.description,
-        File: this.state.file
-      })
+      .post("/api/images", data)
       .then(this.setState({ addItemFormActive: false }));
   }
   preview(event) {
-    console.log(event);
     if (event.target.files && event.target.files[0]) {
       let file = event.target.files[0];
       const reader = new FileReader();
@@ -74,15 +69,6 @@ export default class AddItem extends Component {
         />
         <input type="file" accept="image/*" onChange={e => this.preview(e)} />
         <img src={this.state.src} />
-        {/*<ImageUploader
-            withIcon={true}
-            buttonText="Choose images"
-            onChange={e => this.onDrop(e)}
-            imgExtension={[".jpg", ".gif", ".png", ".gif"]}
-            maxFileSize={5242880}
-            value={this.state.file}
-            name="file"
-          />*/}
         <input
           type="text"
           name="description"

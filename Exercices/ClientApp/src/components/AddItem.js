@@ -1,6 +1,5 @@
 import axios from "axios";
 import React, { Component } from "react";
-import ImageUploader from "react-images-upload";
 
 export default class AddItem extends Component {
   constructor(props) {

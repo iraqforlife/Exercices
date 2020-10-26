@@ -28,44 +28,15 @@ namespace exercices.Controllers
 
         // GET: api/images
         [HttpGet]
-        public async Task<List<Image>> Get()
-        {
-            var images = await Context.Images.ToListAsync();
-            /*foreach(var image in images)
-            {
-                image.ImageBytes = ConvertImageBytes(Convert.ToBase64String(image.ImageBytes));
-            }*/
-            return images;
-        }
+        public async Task<List<Image>> Get() => await Context.Images.ToListAsync();
 
         // GET api/images/5
         [HttpGet("{id}")]
-        public async Task<Image> Get(int id)
-        {
-            var image = await Context.Images.FirstOrDefaultAsync(i => i.Id == id);
-            if(image != null)
-                image.ImageBytes = ConvertImageBytes(Convert.ToBase64String(image.ImageBytes));
-
-            return image;
-        }
-        private byte[] ConvertImageBytes(string imageString)
-        {
-            if (string.IsNullOrEmpty(imageString))
-                return null;
-            else
-                return Convert.FromBase64String(imageString);
-        }
+        public async Task<Image> Get(int id) => await Context.Images.FirstOrDefaultAsync(i => i.Id == id);
         // POST api/images
         [HttpPost]
         public async Task Post([FromForm] Image image)
         {
-            /*
-            string root = WebHostEnvironment.WebRootPath;
-            string fileName = Path.GetFileNameWithoutExtension(image.Path);
-            string extention = Path.GetExtension(image.Path);
-            image.Path = fileName + "[" + DateTime.Now.Ticks + "]" + extention;
-            string path = Path.Combine(root + "/Image", fileName);
-            */
             if (image.File != null && image.File.Length > 0)
             {
                 using (var stream = new MemoryStream())
@@ -104,7 +75,7 @@ namespace exercices.Controllers
             var dbImage = Context.Images.FirstOrDefault(r => r.Id.Equals(id));
 
             if (dbImage == null)
-                throw new System.Exception("image not found");
+                throw new Exception("image not found");
 
             Context.Images.Remove(dbImage);
             await Context.SaveChangesAsync();

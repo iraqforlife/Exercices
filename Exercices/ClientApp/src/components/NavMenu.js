@@ -23,6 +23,7 @@ export class NavMenu extends Component {
 
   handleLogout() {
     localStorage.removeItem("token")
+    window.location.reload();
   }
 
   render () {

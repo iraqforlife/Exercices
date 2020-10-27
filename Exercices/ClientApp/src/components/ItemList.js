@@ -29,7 +29,7 @@ export class ItemList extends Component {
               {items.map(item => (
                 <tr key={item.id}>
                   <td>{item.title}</td>
-                  <td><img src={`data:image/png;base64,${item.imageBytes}`}/></td>
+                  <td className="img-col"><img src={`data:image/png;base64,${item.imageBytes}`}/></td>
                   <td>{item.description}</td>
                 </tr>
               ))}

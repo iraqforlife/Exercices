@@ -3,6 +3,7 @@ import { Route } from 'react-router';
 import { Layout } from './components/Layout';
 import { Home } from './components/Home';
 import { ItemList } from './components/ItemList';
+import 'semantic-ui-css/semantic.min.css'
 import './app.scss';
 
 export default class App extends Component {

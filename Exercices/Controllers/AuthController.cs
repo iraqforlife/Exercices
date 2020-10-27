@@ -24,7 +24,7 @@ namespace exercices
         {
             var dbUser = Context.Users.FirstOrDefault(u => u.UserName == user.UserName && u.PasswordHash == user.PasswordHash);
             if (dbUser is null)
-                return Unauthorized();
+                return NotFound();
 
             var token = Auth.Auth(user);
             if (token is null)

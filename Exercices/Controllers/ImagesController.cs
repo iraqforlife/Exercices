@@ -18,12 +18,10 @@ namespace exercices.Controllers
     public class ImagesController : ControllerBase
     {
         public Context Context { get; }
-        public IWebHostEnvironment WebHostEnvironment { get; }
 
-        public ImagesController(Context context, IWebHostEnvironment webHostEnvironment)
+        public ImagesController(Context context)
         {
             Context = context;
-            WebHostEnvironment = webHostEnvironment;
         }
 
         // GET: api/images

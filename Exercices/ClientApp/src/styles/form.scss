@@ -1,0 +1,44 @@
+.form-container {
+    form {
+        display: flex;
+        max-width: 300px;
+        flex-direction: column;
+        input {
+            margin: 5px 0px;
+        }
+    }
+}
+
+.themed-btn {
+    max-width: 100px;
+    border-radius: 3px;
+    outline: none;
+    background-color: #0278ae;
+    border: none;
+    color: #fff;
+}
+
+.add-item-form {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    input {
+        margin: 5px 0;
+    }
+    img {
+        width: 100%;
+        height: auto;
+    }
+}
+
+.img-col {
+    max-width: 200px;
+    img {
+        width: 100%;
+        object-fit: contain;
+    }
+}
+
+.form-error-message {
+    color: red;
+}

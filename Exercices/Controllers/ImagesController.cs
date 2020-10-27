@@ -1,8 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Exercices.Model;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -23,24 +26,24 @@ namespace exercices.Controllers
 
         // GET: api/images
         [HttpGet]
-        public async Task<List<Image>> Get()
-        {
-            var images = await Context.Images.ToListAsync();
-            return images;
-        }
+        public async Task<List<Image>> Get() => await Context.Images.ToListAsync();
 
         // GET api/images/5
         [HttpGet("{id}")]
-        [AllowAnonymous]
-        public async Task<Image> Get(int id)
-        {
-            return await Context.Images.FirstAsync(i => i.Id == id);
-        }
-
+        public async Task<Image> Get(int id) => await Context.Images.FirstOrDefaultAsync(i => i.Id == id);
         // POST api/images
         [HttpPost]
-        public async Task Post([FromBody] Image image)
+        public async Task Post([FromForm] Image image)
         {
+            if (image.File != null && image.File.Length > 0)
+            {
+                using (var stream = new MemoryStream())
+                {
+                    await image.File.CopyToAsync(stream);
+                    image.ImageBytes = stream.ToArray();
+                }
+            }
+
             Context.Add(image);
             await Context.SaveChangesAsync();
         }
@@ -56,6 +59,7 @@ namespace exercices.Controllers
             //update
             dbImage.Title = image.Title;
             dbImage.Description = image.Description;
+
             // save
             Context.Images.Attach(dbImage);
             Context.Entry(dbImage).State = EntityState.Modified;
@@ -69,7 +73,7 @@ namespace exercices.Controllers
             var dbImage = Context.Images.FirstOrDefault(r => r.Id.Equals(id));
 
             if (dbImage == null)
-                throw new System.Exception("image not found");
+                throw new Exception("image not found");
 
             Context.Images.Remove(dbImage);
             await Context.SaveChangesAsync();

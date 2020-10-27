@@ -42,7 +42,10 @@ export default class AddItem extends Component {
     data.append("file", this.state.file);
     axios
       .post("/api/images", data)
-      .then(this.setState({ addItemFormActive: false }));
+      .then(() => { 
+        this.setState({ addItemFormActive: false })
+        window.location.reload();
+      });
   }
   preview(event) {
     if (event.target.files && event.target.files[0]) {
@@ -58,7 +61,7 @@ export default class AddItem extends Component {
 
   addItemForm() {
     return (
-      <form>
+      <form className="add-item-form">
         <input
           type="text"
           name="title"
